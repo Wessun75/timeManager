@@ -21,3 +21,7 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+#front_end
+front_end/time_manager/.idea
+front_end/time_manager/node_modules

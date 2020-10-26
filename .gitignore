@@ -22,6 +22,12 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
+#root
+/.idea/
+
 #front_end
-front_end/time_manager/.idea
-front_end/time_manager/node_modules
+/front_end/time_manager/.idea
+/front_end/time_manager/node_modules
+
+#back_end
+/back_end/apiTimeManager/.idea

@@ -19,15 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab168d6-1e7c-4164-b451-a2672eec4e4a" name="Default Changelist" comment="gitignore">
-      <change afterPath="$PROJECT_DIR$/front_end/time_manager/src/components/Home.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front_end/time_manager/src/router/index.js" afterDir="false" />
+    <list default="true" id="9ab168d6-1e7c-4164-b451-a2672eec4e4a" name="Default Changelist" comment="- Ajout router&#10;- Ajout vue &quot;Home&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front_end/time_manager/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/front_end/time_manager/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front_end/time_manager/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/front_end/time_manager/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front_end/time_manager/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front_end/time_manager/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front_end/time_manager/src/components/HelloWorld.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front_end/time_manager/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/front_end/time_manager/src/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +64,7 @@
       <option name="presentableId" value="Default" />
       <updated>1603726436655</updated>
       <workItem from="1603726437777" duration="116000" />
-      <workItem from="1603726621354" duration="2408000" />
+      <workItem from="1603726621354" duration="3049000" />
     </task>
     <task id="LOCAL-00001" summary="init - vuejs">
       <created>1603726738496</created>
@@ -94,7 +87,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603726973239</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="- Ajout router&#10;- Ajout vue &quot;Home&quot;">
+      <created>1603729164784</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1603729164784</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,7 +115,8 @@
     <MESSAGE value="init - vuejs" />
     <MESSAGE value="init" />
     <MESSAGE value="gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="gitignore" />
+    <MESSAGE value="- Ajout router&#10;- Ajout vue &quot;Home&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Ajout router&#10;- Ajout vue &quot;Home&quot;" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603728557109">
@@ -126,13 +127,17 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="153" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1603726532142" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1603726976548">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1603729170992">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1603726976548" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1603729170992" />
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603728196001">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1603728196001" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1603729142657">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1603729142657" />
   </component>
 </project>

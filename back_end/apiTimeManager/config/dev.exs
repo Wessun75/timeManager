@@ -4,7 +4,7 @@ use Mix.Config
 config :apiTime, Todolist.Repo,
   username: "postgres",
   password: "postgres",
-  database: "apitime_dev",
+  database: "time_manager",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10

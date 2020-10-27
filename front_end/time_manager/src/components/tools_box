@@ -1,0 +1,10 @@
+
+// Fonction exemple pour changer l'user !
+console.log(Home.data().getUser)
+document.title = "Profil de " + Home.data().getUser.username
+Home.methods.setUser({
+  username: "C'est pas moi",
+  email: "yolo@yolo.fr",
+  rank: ""
+})
+console.log(Home.data().getUser)

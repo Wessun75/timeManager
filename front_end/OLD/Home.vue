@@ -1,26 +1,26 @@
+
+//    Vue principale doit toujours être chargée sauf pendant le login / register
+//    Elle contient les vars à transmettre aux vues
+
 <template>
-  <div id="app">
+  <div id="Home">
     <div v-if="localuser==null">
       <router-link to="/register"/>
     </div>
     <div v-else>
-      <NavBar/>
-      <router-view/>
+
     </div>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import NavBar from "@/components/tools/NavBar";
 
 let localuser = null;
 let localteamofuser = null;
 
 export default {
-  name: "App",
-  components: {
-    NavBar,
-  },
+  name: "Home",
   created() {
     document.title = "Accueil"
   },
@@ -46,25 +46,6 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<style scoped>
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>

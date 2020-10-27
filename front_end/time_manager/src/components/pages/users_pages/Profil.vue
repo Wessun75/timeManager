@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import Home from "@/components/Home";
 import Axios from "axios"
 
 export default {
@@ -33,7 +32,13 @@ export default {
   methods: {
     updateUser(userfields) {
       console.log(userfields)
-      Axios.get("")
+      Axios.put(
+          "http://localhost:4000/edit/" + Home.data().getUser.userid,
+          { params:
+                {
+                  token: Home.data().getUser.LOCALTOKEN
+                }
+          })
           .then(response => {
             // Mise à jour de l'user
             Home.methods.setUser(response);

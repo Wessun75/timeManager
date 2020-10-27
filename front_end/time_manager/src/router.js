@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from './store.js'
-import Home from './views/Home.vue'
-import About from './views/About.vue'
+import store from './libs/stores/store.js'
+import Home from '../../OLD/views/Home.vue'
+import About from '../../OLD/views/About.vue'
 import Login from './components/authentication/Login.vue'
 import Register from './components/authentication/Register.vue'
-import Resource from './components/resources/Resources.vue'
+import Resource from '../../OLD/resources/Resources.vue'
 Vue.use(Router)
 let router = new Router({
   mode: 'history',

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Header/>
     <div v-if="localuser==null">
       <router-link to="/register"/>
     </div>
@@ -7,11 +8,14 @@
       <NavBar/>
       <router-view/>
     </div>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import NavBar from "@/components/tools/NavBar";
+import Header from "@/components/tools/Header";
+import Footer from "@/components/tools/Footer";
 
 let localuser = null;
 let localteamofuser = null;
@@ -19,6 +23,8 @@ let localteamofuser = null;
 export default {
   name: "App",
   components: {
+    Footer,
+    Header,
     NavBar,
   },
   created() {

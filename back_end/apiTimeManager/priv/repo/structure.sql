@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.14 (Ubuntu 10.14-0ubuntu0.18.04.1)
--- Dumped by pg_dump version 10.14 (Ubuntu 10.14-0ubuntu0.18.04.1)
+-- Dumped from database version 13.0
+-- Dumped by pg_dump version 13.0
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -16,23 +16,9 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
 SET default_tablespace = '';
 
-SET default_with_oids = false;
+SET default_table_access_method = heap;
 
 --
 -- Name: clocks; Type: TABLE; Schema: public; Owner: -
@@ -82,7 +68,7 @@ CREATE TABLE public.schema_migrations (
 --
 
 CREATE TABLE public.teams (
-    team_name character varying,
+    team_name character varying NOT NULL,
     id integer NOT NULL
 );
 
@@ -113,12 +99,13 @@ ALTER SEQUENCE public.teams_id_seq OWNED BY public.teams.id;
 
 CREATE TABLE public.users (
     id bigint NOT NULL,
-    username character varying(255),
-    email character varying(255),
+    username character varying(255) NOT NULL,
     inserted_at timestamp(0) without time zone NOT NULL,
     updated_at timestamp(0) without time zone NOT NULL,
-    role character varying,
-    managed integer[]
+    role integer NOT NULL,
+    team_id integer,
+    manage_id integer[],
+    password character varying NOT NULL
 );
 
 

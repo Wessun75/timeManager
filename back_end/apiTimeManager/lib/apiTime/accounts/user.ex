@@ -4,8 +4,10 @@ defmodule Todolist.Accounts.User do
 
   schema "users" do
     field :email, :string
-    field :username, :string
-
+    field :password, :string
+    field :team_id, :integer
+    field :manage_id, {:array, integer}
+    field :role, :integer
     timestamps()
   end
 

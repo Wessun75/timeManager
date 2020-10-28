@@ -6,7 +6,7 @@ defmodule Todolist.Accounts.User do
     field :email, :string
     field :password, :string
     field :team_id, :integer
-    field :manage_id, {:array, integer}
+    field :manage_id, {:array, :integer}
     field :role, :integer
     timestamps()
   end

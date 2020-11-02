@@ -7,13 +7,13 @@ defmodule TodolistWeb.Router do
 
   scope "/api", TodolistWeb do
     pipe_through :api
-    resources "/users", UserController, except: [:new, :edit]
-    resources "/clocks", ClockController, param: "user_id", except: [:new, :edit]
+    resources "/clocks", ClockController, param: "user_id", except: [:new]
     post "/clocks/:user_id", ClockController, :create
     post "/workingtimes/:user_id", WorkingtimeController, :create
     resources "/workingtimes", WorkingtimeController, only: [:update, :delete]
     resources "/workingtimes/:user_id", WorkingtimeController, only: [:index, :show] do
     end
+    resources "/users", UserController, except: [:new]
   end
 
   # Enables LiveDashboard only for development"

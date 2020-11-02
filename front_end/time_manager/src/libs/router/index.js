@@ -4,7 +4,8 @@ import Profil from "@/components/pages/users_pages/Profil";
 import Team from "@/components/pages/manager_pages/Team";
 import Login from "@/components/authentication/Login";
 import Register from "@/components/authentication/Register";
-import App from "@/App";
+import Home from "@/components/public/Home";
+//import App from "@/App";
 
 //  Activation du routerJs
 Vue.use(Router);
@@ -17,7 +18,7 @@ export default new Router({
         {
             path: "/",
             name: "Accueil",
-            component: App
+            component: Home
         },
         {
             path: "/login",

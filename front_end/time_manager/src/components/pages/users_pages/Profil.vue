@@ -6,42 +6,42 @@
       il faut taper le password actuel pour valider le changement
 
 <template>
-  <div id="Home">
-    Profil
+  <div id="Profil">
+    {{ user.username }}
   </div>
 </template>
 
 <script>
 import Axios from "axios"
+import App from "@/App";
 
 export default {
   name: "Profil",
+  computed: {
+    user: App.data().getUser
+  },
   created() {
     // Si user null, retour à l'accueil cette page n'est dispo que si User log !
-    if (Home.data().getUser == null) {
+    if (App.data().getUser == null) {
       console.error("Action impossible, utilisateur non connecté.")
-      document.title = "Accueil"
+//      document.title = "Accueil"
       this.$router.push("/");
       return;// -> Retour direct à Home
     }
-    Home.methods.setUser({
-      username: "yolo"
-    })
-    console.log(Home.data().getUser)
   },
   methods: {
     updateUser(userfields) {
       console.log(userfields)
       Axios.put(
-          "http://localhost:4000/edit/" + Home.data().getUser.userid,
+          "http://localhost:4000/edit/" + App.data().getUser.userid,
           { params:
                 {
-                  token: Home.data().getUser.LOCALTOKEN
+                  token: App.data().getUser.LOCALTOKEN
                 }
           })
           .then(response => {
             // Mise à jour de l'user
-            Home.methods.setUser(response);
+            App.methods.setUser(response);
             this.$forceUpdate();
             }
           )

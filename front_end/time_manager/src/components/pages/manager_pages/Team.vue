@@ -23,8 +23,8 @@ Page manager, pour afficher:
 </template>
 
 <script>
-import Home from "../../../../../OLD/Home";
 import Axios from "axios";
+import App from "@/App";
 
 export default {
   name: "Team",
@@ -33,19 +33,18 @@ export default {
       teams: []
     }
   },
-
   mounted() {
     // Si user null ou pas level 2+, retour à l'accueil
-    if (!Home.data().getUser || Home.data().getUser.rank <= 2) {
+    if (!App.data().getUser || App.data().getUser.rank <= 2) {
       console.error("Action impossible, permissions insufisante.");
       document.title = "Accueil";
       this.$router.push("/");
       return;// -> Retour direct à Home
     }
-    Axios.get(`http://localhost:4000/viewManaged/${Home.data().getUser.userid}`,
+    Axios.get(`http://localhost:4000/viewManaged/${App.data().getUser.userid}`,
         { params:
               {
-                token: Home.data().getUser.LOCALTOKEN
+                token: App.data().getUser.LOCALTOKEN
               }
         })
         .then(response => {

@@ -1,12 +1,12 @@
 <template>
   <header>
-
+    xDD
   </header>
 </template>
 
 <script>
 export default {
-name: "Header.vue"
+  name: "Header"
 }
 </script>
 

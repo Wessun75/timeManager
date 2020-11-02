@@ -57,9 +57,8 @@ defmodule Todolist.Accounts do
 
   """
   def create_user(attrs \\ %{}) do
-    changeset = User.registration_changeset(%User{},attrs)
-    {:error, changeset} = Repo.insert(changeset)
-    changeset.errors
+    User.registration_changeset(%User{}, attrs)
+    |> Repo.insert()
   end
 
   @doc """

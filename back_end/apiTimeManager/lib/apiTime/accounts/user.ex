@@ -23,7 +23,7 @@ defmodule Todolist.Accounts.User do
     user
     |> cast(attrs, [:username, :password, :role, :manage_id, :team_id])
     |> validate_required([:username, :password])
-    |> check_constraint(:username, name: :username)
+    |> unique_constraint(:username, message: "username existe déjà")
     |> put_pass_hash()
   end
 

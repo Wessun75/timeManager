@@ -13,11 +13,17 @@ defmodule Todolist.Accounts.User do
     timestamps()
   end
 
-  @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:username, :password])
+    |> cast(attrs, [:username, :password, :role, :manage_id, :team_id])
+    |> put_pass_hash()
+  end
+
+  def registration_changeset(user, attrs) do
+    user
+    |> cast(attrs, [:username, :password, :role, :manage_id, :team_id])
     |> validate_required([:username, :password])
+    |> check_constraint(:username, name: :username)
     |> put_pass_hash()
   end
 

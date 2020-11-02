@@ -1,20 +1,7 @@
 <template>
   <div id="Home">
-    <NavBar
-        name="Logo Name"
-        :navLinks="[
-        {
-          name: 'Accueil',
-          link: '/',
-          dropdown: false,
-        },
-        {
-          name: 'Profile',
-          link: '/profil',
-          dropdown: false
-        }
-      ]"
-    />
+    <NavBar/>
+    <router-view/>
     <Footer/>
   </div>
 </template>
@@ -30,7 +17,7 @@ export default {
     Footer,
   },
   created() {
-    document.title = "Accueil"
+    document.title = "Accueil";
   }
 }
 </script>

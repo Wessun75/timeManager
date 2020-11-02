@@ -1,7 +1,9 @@
 <template>
   <footer>
     <div id="container">
-      test - foooter
+      Time Manager
+      <br>
+      Projet 01 Épitech - Paris
     </div>
   </footer>
 </template>
@@ -13,45 +15,19 @@ export default {
 </script>
 
 <style scoped>
-body{
-  display:flex;
-  background-color:#F0F8FF;
-  height:95vh;
-  justify-content:center;
-  align-items:flex-end;
+body, footer {
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  left: 2%;
+  right: 2%;
+  bottom: 0;
+  text-align: center;
 }
 
 #container{
-  padding-top:20px;
-  margin-top:20px;
-  width:100vw;
+  padding-top: 20px;
+  padding-bottom: 5px;
   color:white;
   background-color:#292354;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-#contacts{
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  width:100%;
-}
-#contacts--contact{
-  text-align:right;
-}
-#contacts--social{
-  width:20%;
-  display : flex;
-  justify-content : space-between;
-}
-#contacts--social div{
-  height:30px;
-  width:30px;
-  background-color:white;
-  border-radius:50%;
-}
-#mentions p {
-  font-size:0.5em;
 }
 </style>

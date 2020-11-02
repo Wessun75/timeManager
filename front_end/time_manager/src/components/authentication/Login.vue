@@ -14,7 +14,7 @@
   </div>
 </template>
 <script>
-import App from "@/App";
+//import App from "@/App";
 
 export default {
   data() {
@@ -32,11 +32,11 @@ export default {
           .dispatch("login", { email, password })
           .then(() => this.$router.push("/"))
           .catch(err => console.log(err));
-      */
+      *//*
       App.methods.setUser({
         username: "MileKat",
         email: "test",
-      })
+      })*/
       this.$router.push("/")
     }
   },

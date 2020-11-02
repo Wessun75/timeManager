@@ -1,6 +1,6 @@
 <template>
   <header>
-    xDD
+    Aucun pour le moment !
   </header>
 </template>
 

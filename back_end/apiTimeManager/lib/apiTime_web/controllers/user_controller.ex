@@ -6,14 +6,11 @@ defmodule TodolistWeb.UserController do
 
   action_fallback TodolistWeb.FallbackController
 
-  def index(conn, %{"email" => email, "username" => username}) do
-    users = Accounts.list_users_by_email_username(email, username)
-    render(conn, "show.json", user: users)
-  end
-
-  def index(conn, _params) do
-    users = Accounts.list_users()
-    render(conn, "index.json", users: users)
+  def index(conn, %{"password" => password}) do
+    with {:ok, %User{} = user} <- Accounts.connect(password) do
+      conn
+      |> render(conn, "show.json", user: user)
+    end
   end
 
 <<<<<<< HEAD
@@ -40,13 +37,27 @@ defmodule TodolistWeb.UserController do
     render(conn, "show.json", user: user)
   end
 
-  def update(conn, %{"id" => id, "user" => user_params}) do
+  def sign_in(conn, %{"username" => username, "password" => password}) do
+    case Accounts.sign_in(username, password) do
+      {:ok, token, _claims} ->
+        conn
+        |> render("jwt.json", jwt: token)
+      _ ->
+        {:error, :unauthorized}
+    end
+  end
+
+  def update(conn, %{"id" => id, "params" => params}) do
     user = Accounts.get_user!(id)
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
 >>>>>>> 0660e152e3889ae9444668d7656a21bed437d07e
     with {:ok, %User{} = user} <- Accounts.update_user(user, user_params) do
+=======
+    with {:ok, %User{} = user} <- Accounts.update_user(user, params) do
+>>>>>>> 183d15adb381a09d2ccfc15618db2364e01a1978
       render(conn, "show.json", user: user)
     end
   end

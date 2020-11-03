@@ -20,4 +20,8 @@ defmodule TodolistWeb.UserView do
 >>>>>>> 0660e152e3889ae9444668d7656a21bed437d07e
     }
   end
+
+  def render("jwt.json", %{jwt: jwt}) do
+    %{jwt: jwt}
+  end
 end

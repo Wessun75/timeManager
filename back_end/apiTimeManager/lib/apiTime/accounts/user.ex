@@ -29,6 +29,11 @@ defmodule Todolist.Accounts.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:username, :password, :role, :manage_id, :team_id])
+  end
+
+  def update_changeset(user, attrs) do
+    user
+    |> cast(attrs, [:username, :password, :role, :manage_id, :team_id])
     |> put_pass_hash()
   end
 
@@ -43,7 +48,6 @@ defmodule Todolist.Accounts.User do
   defp put_pass_hash(changeset) do
     case changeset do
       %Ecto.Changeset{
-        valid?: true,
         changes: %{
           password: password
         }

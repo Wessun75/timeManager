@@ -9,12 +9,20 @@
 <script>
 import Footer from "@/components/public/Footer";
 import NavBar from "@/components/public/NavBar";
+import Store from "@/store";
 
 export default {
   name: "Home",
   components: {
     NavBar,
     Footer,
+  },
+  beforeMount() {
+    if (Store.state.token == null) {
+      console.error("Action impossible, utilisateur non connecté.")
+      this.$router.push("/login");
+      return;// -> Retour direct à Home
+    }
   },
   created() {
     document.title = "Accueil";

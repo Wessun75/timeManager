@@ -23,26 +23,25 @@ export default {
       get() {
         return Store.state.user;
       }
+    },
+    token: {
+      get() {
+        return Store.state.token;
+      }
     }
   },
   created() {
     // Si user null, retour à l'accueil cette page n'est dispo que si User log !
-    if (Store.state.user == null) {
-      console.error("Action impossible, utilisateur non connecté.")
-      document.title = "Accueil"
-      this.$router.push("/");
-      return;// -> Retour direct à Home
-    }
     document.title = "Profil de " + Store.state.user.username;
   },
   methods: {
     updateUser(userfields) {
       console.log(userfields)
       Axios.put(
-          "http://localhost:4000/edit/" + App.data().getUser.userid,
+          "http://localhost:4000/edit/" + this.user.userid,
           { params:
                 {
-                  token: App.data().getUser.LOCALTOKEN
+                  token: this.token
                 }
           })
           .then(response => {

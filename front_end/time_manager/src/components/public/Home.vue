@@ -1,20 +1,7 @@
 <template>
   <div id="Home">
-    <NavBar
-        name="Logo Name"
-        :navLinks="[
-        {
-          name: 'Accueil',
-          link: '/',
-          dropdown: false,
-        },
-        {
-          name: 'Profile',
-          link: '/profil',
-          dropdown: false
-        }
-      ]"
-    />
+    <NavBar/>
+    <router-view/>
     <Footer/>
   </div>
 </template>
@@ -22,6 +9,7 @@
 <script>
 import Footer from "@/components/public/Footer";
 import NavBar from "@/components/public/NavBar";
+import Store from "@/store";
 
 export default {
   name: "Home",
@@ -29,8 +17,15 @@ export default {
     NavBar,
     Footer,
   },
+  beforeMount() {
+    if (Store.state.token == null) {
+      console.error("Action impossible, utilisateur non connecté.")
+      this.$router.push("/login");
+      return;// -> Retour direct à Home
+    }
+  },
   created() {
-    document.title = "Accueil"
+    document.title = "Accueil";
   }
 }
 </script>

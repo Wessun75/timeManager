@@ -1,3 +1,4 @@
+/*
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '@/libs/stores/store.js'
@@ -49,3 +50,6 @@ router.beforeEach((to, from, next) => {
     }
   })
 export default router
+
+
+ */

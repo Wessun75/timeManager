@@ -1,9 +1,9 @@
 
-    Vue pour le profil Utilisateur, contient:
-    - Affichage du profil personnel (Username, Mail, Grade)
-    - Affichage du nom de l'équipe à laquelle l'user appartient (Nom équipe, liste des managers)
-    - Champ + bouton pour changer l'username, le mail ou le password,
-      il faut taper le password actuel pour valider le changement
+Vue pour le profil Utilisateur, contient:
+- Affichage du profil personnel (Username, Mail, Grade)
+- Affichage du nom de l'équipe à laquelle l'user appartient (Nom équipe, liste des managers)
+- Champ + bouton pour changer l'username, le mail ou le password,
+il faut taper le password actuel pour valider le changement
 
 <template>
   <div id="Profil">
@@ -14,42 +14,47 @@
 <script>
 import Axios from "axios"
 import App from "@/App";
+import Store from "@/store"
 
 export default {
   name: "Profil",
   computed: {
-    user: App.data().getUser
+    user: {
+      get() {
+        return Store.state.user;
+      }
+    },
+    token: {
+      get() {
+        return Store.state.token;
+      }
+    }
   },
   created() {
     // Si user null, retour à l'accueil cette page n'est dispo que si User log !
-    if (App.data().getUser == null) {
-      console.error("Action impossible, utilisateur non connecté.")
-//      document.title = "Accueil"
-      this.$router.push("/");
-      return;// -> Retour direct à Home
-    }
+    document.title = "Profil de " + Store.state.user.username;
   },
   methods: {
     updateUser(userfields) {
       console.log(userfields)
       Axios.put(
-          "http://localhost:4000/edit/" + App.data().getUser.userid,
+          "http://localhost:4000/edit/" + this.user.userid,
           { params:
                 {
-                  token: App.data().getUser.LOCALTOKEN
+                  token: this.token
                 }
           })
           .then(response => {
-            // Mise à jour de l'user
-            App.methods.setUser(response);
-            this.$forceUpdate();
-            }
+                // Mise à jour de l'user
+                App.methods.setUser(response);
+                this.$forceUpdate();
+              }
           )
           .catch( error =>
-            {
-              console.log(error)
-              /*Erreur ici*/
-            }
+              {
+                console.log(error)
+                /*Erreur ici*/
+              }
           );
     }
   }

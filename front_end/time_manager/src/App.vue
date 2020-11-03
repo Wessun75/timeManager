@@ -29,7 +29,8 @@ export default {
     Store.state.user = {
       username: "Arthur",
       email: "arthur@epitech.eu"
-    }
+    };
+    Store.state.token = "YOLOTOKEN";
   }
 }
 </script>

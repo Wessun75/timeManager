@@ -1,24 +1,38 @@
 <template>
-  <nav>
-    <ul class="topnav" id="myTopnav">
-      <router-link v-for="list in mavar" v-bind:key="list.id" :to=list.url>{{ list.name }}</router-link>
-    </ul>
-  </nav>
+  <div v-bind:class="{'topnav': !dropdown, 'topnav responsive': dropdown}" id="NavBar">
+    <router-link v-for="list in NavBarList" v-bind:key="list.id" :to=list.url>{{ list.name }}</router-link>
+    <a class="icon" @click="dropdown = !dropdown">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
 </template>
 
 <script>
 
 let bar = null;
+//let dropdownvar = false;
 
 export default {
   name: 'NavBar',
   computed: {
-    mavar: {
+    //dropdown,
+    NavBarList: {
       get() {
         return bar
       }
     }
   },
+  data() {
+    return {
+      dropdown: false
+    }
+  },/*
+  methods: {
+    barExpend: function () {
+      this.dropdown = !this.dropdown;
+      console.log(this.dropdown)
+    }
+  },*/
   created() {
     bar = [
       {
@@ -54,7 +68,7 @@ body {
 
 .topnav {
   overflow: hidden;
-  background-color: #333;
+  background-color: darkcyan;
 }
 
 .topnav a {
@@ -69,12 +83,7 @@ body {
 
 .topnav a:hover {
   background-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-  background-color: #4CAF50;
-  color: white;
+  color: darkcyan;
 }
 
 .topnav .icon {

@@ -26,9 +26,13 @@ export default {
     }
   },
   beforeMount() {
+    //Init d'un user fake
     Store.state.user = {
       username: "Arthur",
-      email: "arthur@epitech.eu"
+      email: "arthur@epitech.eu",
+      role: 1,
+      team_id: null,
+      manage_id: null
     };
     Store.state.token = "YOLOTOKEN";
   }

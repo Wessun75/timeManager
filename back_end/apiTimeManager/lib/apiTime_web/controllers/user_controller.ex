@@ -13,6 +13,14 @@ defmodule TodolistWeb.UserController do
     end
   end
 
+<<<<<<< HEAD
+  def create(conn, %{"user" => user_params}) do
+    with {:ok, %User{} = user} <- Accounts.create_user(user_params) do
+      conn
+      |> put_status(:created)
+      |> put_resp_header("location", Routes.user_path(conn, :show, user))
+      |> render("show.json", user: user)
+=======
   def create(conn, params) do
     with {:ok, %User{} = user} <- Accounts.create_user(params) do
       conn
@@ -20,6 +28,7 @@ defmodule TodolistWeb.UserController do
       |> put_resp_header("location", Routes.user_path(conn, :show, user))
       |> resp(200, "Account created")
       |> send_resp()
+>>>>>>> 0660e152e3889ae9444668d7656a21bed437d07e
     end
   end
 
@@ -40,7 +49,15 @@ defmodule TodolistWeb.UserController do
 
   def update(conn, %{"id" => id, "params" => params}) do
     user = Accounts.get_user!(id)
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+>>>>>>> 0660e152e3889ae9444668d7656a21bed437d07e
+    with {:ok, %User{} = user} <- Accounts.update_user(user, user_params) do
+=======
     with {:ok, %User{} = user} <- Accounts.update_user(user, params) do
+>>>>>>> 183d15adb381a09d2ccfc15618db2364e01a1978
       render(conn, "show.json", user: user)
     end
   end

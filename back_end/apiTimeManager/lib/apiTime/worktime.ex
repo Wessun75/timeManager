@@ -7,6 +7,10 @@ defmodule Todolist.Worktime do
   alias Todolist.Repo
 
   alias Todolist.Worktime.Workingtime
+<<<<<<< HEAD
+  alias Todolist.Times.Clock
+=======
+>>>>>>> 0660e152e3889ae9444668d7656a21bed437d07e
 
   @doc """
   Returns the list of workingtimes.
@@ -66,7 +70,11 @@ defmodule Todolist.Worktime do
   def create_workingtime(attrs \\ %{}) do
     %Workingtime{}
     |> Workingtime.changeset(attrs)
+<<<<<<< HEAD
+    |> Workingtime.insert()
+=======
     |> Repo.insert()
+>>>>>>> 0660e152e3889ae9444668d7656a21bed437d07e
   end
 
   @doc """

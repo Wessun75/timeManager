@@ -28,11 +28,12 @@ export default {
   beforeMount() {
     //Init d'un user fake
     Store.state.user = {
+      userid: 1,
       username: "Arthur",
       email: "arthur@epitech.eu",
-      role: 1,
+      role: 2,
       team_id: null,
-      manage_id: null
+      manage_id: [1,2,3]
     };
     Store.state.token = "YOLOTOKEN";
   }

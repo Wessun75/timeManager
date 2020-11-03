@@ -13,7 +13,6 @@ il faut taper le password actuel pour valider le changement
 
 <script>
 import Axios from "axios"
-import App from "@/App";
 import Store from "@/store"
 
 export default {
@@ -44,10 +43,9 @@ export default {
                   token: this.token
                 }
           })
-          .then(response => {
+          .then(() => {
                 // Mise à jour de l'user
-                App.methods.setUser(response);
-                this.$forceUpdate();
+                //this.$forceUpdate();
               }
           )
           .catch( error =>

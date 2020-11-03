@@ -8,14 +8,23 @@
 </template>
 
 <script>
+import Store from '@/store'
 
 let bar = null;
-//let dropdownvar = false;
+//  From : https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
+function compare( a, b ) {
+  if ( a.id < b.id ){
+    return -1;
+  }
+  if ( a.id > b.id ){
+    return 1;
+  }
+  return 0;
+}
 
 export default {
   name: 'NavBar',
   computed: {
-    //dropdown,
     NavBarList: {
       get() {
         return bar
@@ -26,13 +35,7 @@ export default {
     return {
       dropdown: false
     }
-  },/*
-  methods: {
-    barExpend: function () {
-      this.dropdown = !this.dropdown;
-      console.log(this.dropdown)
-    }
-  },*/
+  },
   created() {
     bar = [
       {
@@ -51,11 +54,14 @@ export default {
         url: ""
       }
     ]
-    bar.push({
-      id: 5,
-      name: "Équipe",
-      url: "equipe"
-    });
+    if (Store.state.user.manage_id) {
+      bar.push({
+        id: 5,
+        name: "Équipe",
+        url: "equipe"
+      });
+      bar.sort(compare)
+    }
   }
 }
 </script>
@@ -64,11 +70,6 @@ export default {
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-}
-
-.topnav {
-  overflow: hidden;
-  background-color: darkcyan;
 }
 
 .topnav a {

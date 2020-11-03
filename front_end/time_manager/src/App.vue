@@ -26,10 +26,15 @@ export default {
     }
   },
   beforeMount() {
+    //Init d'un user fake
     Store.state.user = {
       username: "Arthur",
-      email: "arthur@epitech.eu"
-    }
+      email: "arthur@epitech.eu",
+      role: 1,
+      team_id: null,
+      manage_id: null
+    };
+    Store.state.token = "YOLOTOKEN";
   }
 }
 </script>
@@ -50,9 +55,5 @@ html, body {
 #nav a {
   font-weight: bold;
   color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>

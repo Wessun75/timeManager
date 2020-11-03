@@ -28,6 +28,6 @@ body, footer {
   padding-top: 20px;
   padding-bottom: 5px;
   color:white;
-  background-color:#292354;
+  background-color:darkcyan;
 }
 </style>

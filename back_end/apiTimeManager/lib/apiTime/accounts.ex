@@ -57,8 +57,12 @@ defmodule Todolist.Accounts do
 
   """
   def create_user(attrs \\ %{}) do
+<<<<<<< HEAD
     %User{}
     |> User.changeset(attrs)
+=======
+    User.registration_changeset(%User{}, attrs)
+>>>>>>> 0660e152e3889ae9444668d7656a21bed437d07e
     |> Repo.insert()
   end
 

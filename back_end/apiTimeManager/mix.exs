@@ -42,7 +42,13 @@ defmodule Todolist.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
+<<<<<<< HEAD
       {:plug_cowboy, "~> 2.0"}
+=======
+      {:plug_cowboy, "~> 2.0"},
+      {:bcrypt_elixir, "~> 2.0"},
+      {:joken, "~> 2.0"},
+>>>>>>> 0660e152e3889ae9444668d7656a21bed437d07e
     ]
   end
 

@@ -14,7 +14,10 @@ defmodule TodolistWeb.UserView do
     %{
       id: user.id,
       username: user.username,
+<<<<<<< HEAD
       email: user.email
+=======
+>>>>>>> 0660e152e3889ae9444668d7656a21bed437d07e
     }
   end
 end

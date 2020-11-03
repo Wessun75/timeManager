@@ -21,8 +21,36 @@ defmodule Todolist.Accounts do
     Repo.all(User)
   end
 
-  def list_users_by_email_username(email, username)do
-    Repo.get_by(User, email: email, username: username)
+  defp get_by_username(username) when is_binary(username) do
+    case Repo.get_by(User, username: username) do
+      nil ->
+        {:error, "Login error."}
+      user ->
+        {:ok, user}
+    end
+  end
+
+  defp verify_password(password, %User{} = user) when is_binary(password) do
+    if Bcrypt.verify_pass(password, user.password_hash) do
+      {:ok, user}
+    else
+      {:error, :invalid_password}
+
+    end
+  end
+
+  defp username_password_auth(username, password) when is_binary(username) and is_binary(password) do
+    with {:ok, user} <- get_by_username(username),
+         do: verify_password(password, user)
+  end
+
+  def sign_in(username, password)do
+    case username_password_auth(username, password) do
+      {:ok, token_with_default_claims} ->
+        Todolist.Token.generate_and_sign()
+      _ ->
+        {:error, :unauthorized}
+    end
   end
 
   @doc """
@@ -75,7 +103,7 @@ defmodule Todolist.Accounts do
   """
   def update_user(%User{} = user, attrs) do
     user
-    |> User.changeset(attrs)
+    |> User.update_changeset(attrs)
     |> Repo.update()
   end
 

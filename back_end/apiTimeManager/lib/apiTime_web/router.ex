@@ -11,9 +11,10 @@ defmodule TodolistWeb.Router do
     post "/clocks/:user_id", ClockController, :create
     post "/workingtimes/:user_id", WorkingtimeController, :create
     resources "/workingtimes", WorkingtimeController, only: [:update, :delete]
-    resources "/workingtimes/:user_id", WorkingtimeController, only: [:index, :show] do
-    end
-    resources "/users", UserController, except: [:new]
+    resources "/workingtimes/:user_id", WorkingtimeController, only: [:index, :show]
+    resources "/users", UserController, except: [:new, :create]
+    resources "/users/sign_up", UserController, only: [:create]
+    post "/users/sign_in", UserController, :sign_in
   end
 
   # Enables LiveDashboard only for development"

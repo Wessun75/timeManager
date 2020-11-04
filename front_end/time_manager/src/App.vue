@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
 import Store from "@/store"
 
 let localteamofuser = null;

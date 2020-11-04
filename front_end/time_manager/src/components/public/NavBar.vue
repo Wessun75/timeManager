@@ -1,10 +1,8 @@
 <template>
   <div v-bind:class="{'topnav': !dropdown, 'topnav responsive': dropdown}" id="NavBarChild">
-    <a id="Bar">
-      <router-link v-for="list in NavBarList" v-bind:key="list.id" :to=list.url>{{ list.name }}</router-link>
-      <a class="icon" @click="dropdown = !dropdown">
-        <i class="fa fa-bars"></i>
-      </a>
+    <router-link v-for="list in NavBarList" v-bind:key="list.id" :to=list.url>{{ list.name }}</router-link>
+    <a class="icon" @click="dropdown = !dropdown">
+      <i class="fa fa-bars"></i>
     </a>
   </div>
 </template>
@@ -75,9 +73,15 @@ export default {
 
 <style scoped>
 
-#Bar {
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
   background-color: darkcyan;
-  width: 100%;
+  margin-bottom: 2%;
 }
 
 .topnav a {
@@ -85,7 +89,7 @@ export default {
   display: block;
   color: #f2f2f2;
   text-align: center;
-  padding: 10px 16px;
+  padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
 }

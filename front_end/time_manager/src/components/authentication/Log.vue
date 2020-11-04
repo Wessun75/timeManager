@@ -18,6 +18,7 @@
                           prepend-icon="person"
                           type="text"
                           color="cyan darken-2"
+                          v-model="login.username"
                       />
                       <v-text-field
                           label ="Password"
@@ -25,6 +26,7 @@
                           name="Password"
                           prepend-icon="lock"
                           color="cyan darken-2"
+                          v-model="login.password"
                       />
                     </v-form>
                     <h3 class="text-center mt-3">Forgot your password ?</h3>
@@ -66,6 +68,7 @@
                           name="Username"
                           prepend-icon="person"
                           color="cyan darken-2"
+                          v-model="register.username"
                       />
                       <v-text-field
                           label ="Email"
@@ -73,6 +76,7 @@
                           prepend-icon="email"
                           type="text"
                           color="cyan darken-2"
+                          v-model="register.email"
                       />
                       <v-text-field
                           label ="Password"
@@ -80,6 +84,7 @@
                           name="Password"
                           prepend-icon="lock"
                           color="cyan darken-2"
+                          v-model="register.password"
                       />
                       <v-text-field
                           label ="Confirm Password"
@@ -87,6 +92,7 @@
                           name="CPassword"
                           prepend-icon="lock"
                           color="cyan darken-2"
+                          
                       />
                     </v-form>
                   </v-card-text>
@@ -108,9 +114,22 @@ import { mapActions } from 'vuex'
 
 export default {
   name: "Log",
-  data: () =>({
-    step: 1
-  }),
+  
+  data () {
+    return {
+        step:1,
+        login : {
+            username: null,
+            password: null
+        },
+        register : {
+          username: null,
+          email: null,
+          password: null
+        }
+  }
+
+  },
   props: {
     source: String
   },

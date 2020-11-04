@@ -1,7 +1,12 @@
 <template>
   <div id="Home">
-    <NavBar/>
+    <div id="NavBar">
+      <NavBar/>
+    </div>
     <router-view/>
+    <div id="Accueil" v-if="this.$route.path==='/'">
+      Accueil
+    </div>
     <Footer/>
   </div>
 </template>
@@ -31,5 +36,9 @@ export default {
 </script>
 
 <style scoped>
+
+#NavBar {
+  padding-bottom: 8%;
+}
 
 </style>

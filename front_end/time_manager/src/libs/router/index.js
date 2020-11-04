@@ -4,6 +4,7 @@ import Profil from "@/components/pages/users_pages/Profil";
 import Team from "@/components/pages/manager_pages/Team";
 import Log from "@/components/authentication/Log";
 import Home from "@/components/public/Home";
+import Presence from "@/components/pages/users_pages/Presence";
 
 Vue.use(Router);
 
@@ -27,6 +28,11 @@ export default new Router({
                         name: "Team",
                         path: "equipe",
                         component: Team,
+                    },
+                    {
+                        name: "Presence",
+                        path: "presence",
+                        component: Presence,
                     }
                 ]
             },

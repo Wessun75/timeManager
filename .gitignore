@@ -28,6 +28,7 @@ pnpm-debug.log*
 #front_end
 /front_end/time_manager/.idea
 /front_end/time_manager/node_modules
+/front_end/time_manager/package-lock.json
 
 #back_end
 /back_end/apiTimeManager/.idea

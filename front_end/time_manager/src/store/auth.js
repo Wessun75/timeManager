@@ -28,13 +28,13 @@ export default {
     },
 
     actions:{
-        async login({dispatch},user_info){
-            let res = await axios.post('users', user_info)
+        async signIn( {dispatch} ,user_info){
+            let res = await axios.post('localhost:4000/api/users/sign_in', user_info)
 
             dispatch('attempt',res.data.token)
         },
             //get the token 
-        async attempt({commit,state },token){
+        async attempt({commit, state },token){
             if(token) {
                 commit('SET_TOKEN',token)
             }
@@ -43,9 +43,9 @@ export default {
                 return
             }
 
-            //check that the user's tikon works
+            //check that the user's token works
             try {
-                let res = await axios.get('api_token_address')
+                let res = await axios.get('http://localhost:4000/api/users/')
                 //where the response should be
                 //set all of the data received from the api
                 commit('SET_USER',res.data)

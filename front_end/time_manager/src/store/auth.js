@@ -45,10 +45,13 @@ export default {
 
             //check that the user's token works
             try {
-                let res = await axios.get('http://localhost:4000/api/users/')
+                let res = await axios.get('http://localhost:4000/api/users/sign_in',{
+                    headers: 
+                   { 'Authorization' : 'Bearer'+ token }
+                })
                 //where the response should be
                 //set all of the data received from the api
-                commit('SET_USER',res.data)
+                
             } catch (e) {
                 commit('SET_TOKEN',null)
                 commit('SET_USER',null)

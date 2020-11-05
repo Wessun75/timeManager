@@ -78,28 +78,29 @@ var _default = {
             case 4:
               _context2.prev = 4;
               _context2.next = 7;
-              return regeneratorRuntime.awrap(_axios["default"].get('http://localhost:4000/api/users/'));
+              return regeneratorRuntime.awrap(_axios["default"].get('http://localhost:4000/api/users/sign_in', {
+                headers: {
+                  'Authorization': 'Bearer' + token
+                }
+              }));
 
             case 7:
               res = _context2.sent;
-              //where the response should be
-              //set all of the data received from the api
-              commit('SET_USER', res.data);
-              _context2.next = 15;
+              _context2.next = 14;
               break;
 
-            case 11:
-              _context2.prev = 11;
+            case 10:
+              _context2.prev = 10;
               _context2.t0 = _context2["catch"](4);
               commit('SET_TOKEN', null);
               commit('SET_USER', null);
 
-            case 15:
+            case 14:
             case "end":
               return _context2.stop();
           }
         }
-      }, null, null, [[4, 11]]);
+      }, null, null, [[4, 10]]);
     }
   }
 };

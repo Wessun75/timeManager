@@ -20,11 +20,10 @@ defmodule TodolistWeb.Router do
   end
 
   scope "/debug", TodolistWeb do
-    pipe_through :debug
-    resources "/users", UserController, :index
-    resources "/teams", TeamController, :index
-    resources "/clocks", ClockController, :index
-    resources "/workingtimes", WorkingtimeController, :index
+    get "/users", UserController, :index
+    get "/teams", TeamController, :index
+    get "/clocks", ClockController, :index
+    get "/workingtimes", WorkingtimeController, :index
   end
 
   # Enables LiveDashboard only for development"

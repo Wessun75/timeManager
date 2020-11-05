@@ -11,7 +11,7 @@ defmodule TodolistWeb.UserController do
     render(conn, "show.json", user: user)
   end
 
-  def index(conn, %{"password" => password}) do
+  def index_by(conn, %{"password" => password}) do
     with {:ok, %User{} = user} <- Accounts.connect(password) do
       conn
       |> render(conn, "show.json", user: user)

@@ -12,6 +12,6 @@ defmodule Todolist.Group.Team do
   def changeset(team, attrs) do
     team
     |> cast(attrs, [:team_name])
-    |> validate_required([:team_name])
+    |> validate_required(:team_name)
   end
 end

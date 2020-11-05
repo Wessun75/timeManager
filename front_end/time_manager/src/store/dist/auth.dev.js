@@ -46,10 +46,11 @@ var _default = {
 
             case 3:
               res = _context.sent;
-              commit('SET_TOKEN', res.data.token);
+              commit('SET_TOKEN', res.data);
+              console.log(res.data.token);
               commit('SET_USER', user_info);
 
-            case 6:
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -68,7 +69,7 @@ var _default = {
 
             case 3:
               res = _context2.sent;
-              commit('SET_TOKEN', res.data.token);
+              commit('SET_TOKEN', res.data);
               commit('SET_USER', user_info);
 
             case 6:

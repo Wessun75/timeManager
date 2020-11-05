@@ -3,32 +3,20 @@ defmodule TodolistWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug CORSPlug, origin: "*"
   end
 
   scope "/api", TodolistWeb do
     pipe_through :api
-<<<<<<< HEAD
-    resources "/users", UserController, except: [:new, :edit]
-    resources "/clocks", ClockController, param: "user_id", except: [:new, :edit]
-=======
     resources "/clocks", ClockController, param: "user_id", except: [:new]
->>>>>>> 0660e152e3889ae9444668d7656a21bed437d07e
     post "/clocks/:user_id", ClockController, :create
     post "/workingtimes/:user_id", WorkingtimeController, :create
     resources "/workingtimes", WorkingtimeController, only: [:update, :delete]
-<<<<<<< HEAD
-    resources "/workingtimes/:user_id", WorkingtimeController, only: [:index, :show] do
-    end
-<<<<<<< HEAD
-=======
-    resources "/users", UserController, except: [:new]
->>>>>>> 0660e152e3889ae9444668d7656a21bed437d07e
-=======
     resources "/workingtimes/:user_id", WorkingtimeController, only: [:index, :show]
     resources "/users", UserController, except: [:new, :create]
     resources "/users/sign_up", UserController, only: [:create]
     post "/users/sign_in", UserController, :sign_in
->>>>>>> 183d15adb381a09d2ccfc15618db2364e01a1978
+    resources "/teams", TeamController, except: [:new]
   end
 
   # Enables LiveDashboard only for development"

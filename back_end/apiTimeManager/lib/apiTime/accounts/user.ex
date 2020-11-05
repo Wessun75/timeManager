@@ -3,29 +3,16 @@ defmodule Todolist.Accounts.User do
   import Ecto.Changeset
 
   schema "users" do
-<<<<<<< HEAD
-    field :email, :string
-    field :username, :string
-=======
     field :username, :string
     field :password, :string, virtual: true
     field :password_hash, :string
     field :team_id, :integer
     field :manage_id, {:array, :integer}
     field :role, :integer, default: 1
->>>>>>> 0660e152e3889ae9444668d7656a21bed437d07e
 
     timestamps()
   end
 
-<<<<<<< HEAD
-  @doc false
-  def changeset(user, attrs) do
-    user
-    |> cast(attrs, [:username, :email])
-    |> validate_required([:username, :email])
-  end
-=======
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:username, :password, :role, :manage_id, :team_id])
@@ -57,5 +44,4 @@ defmodule Todolist.Accounts.User do
     end
   end
 
->>>>>>> 0660e152e3889ae9444668d7656a21bed437d07e
 end

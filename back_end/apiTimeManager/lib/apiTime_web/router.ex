@@ -19,6 +19,13 @@ defmodule TodolistWeb.Router do
     resources "/teams", TeamController, except: [:new]
   end
 
+  scope "/debug", TodolistWeb do
+    get "/users", UserController, :index
+    get "/teams", TeamController, :index
+    get "/clocks", ClockController, :index
+    get "/workingtimes", WorkingtimeController, :index
+  end
+
   # Enables LiveDashboard only for development"
   #
   # If you want to use the LiveDashboard in production, you should put

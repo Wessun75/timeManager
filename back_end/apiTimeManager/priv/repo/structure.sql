@@ -69,7 +69,9 @@ CREATE TABLE public.schema_migrations (
 
 CREATE TABLE public.teams (
     team_name character varying NOT NULL,
-    id integer NOT NULL
+    id integer NOT NULL,
+    inserted_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL
 );
 
 
@@ -105,7 +107,7 @@ CREATE TABLE public.users (
     role integer NOT NULL,
     team_id integer,
     manage_id integer[],
-    password character varying NOT NULL
+    password_hash character varying NOT NULL
 );
 
 

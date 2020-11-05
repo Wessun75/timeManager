@@ -7,8 +7,8 @@ defmodule TodolistWeb.UserController do
   action_fallback TodolistWeb.FallbackController
 
   def index(conn, _params) do
-    user = Accounts.list_users()
-    render(conn, "show.json", user: user)
+    users = Accounts.list_users()
+    render(conn, "index.json", users: users)
   end
 
   def index_by(conn, %{"password" => password}) do

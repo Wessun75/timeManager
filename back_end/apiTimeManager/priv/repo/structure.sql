@@ -105,7 +105,7 @@ CREATE TABLE public.users (
     role integer NOT NULL,
     team_id integer,
     manage_id integer[],
-    password character varying NOT NULL
+    password_hash character varying NOT NULL
 );
 
 

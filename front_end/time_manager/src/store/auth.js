@@ -3,11 +3,11 @@ import axios from 'axios'
 export default {
     namespaced: true,
     state: {
-        token:'',
-        user:{}
+        token: null,
+        user: null
     },
 
-    getters:{
+    getters:{/*
         authenticated(state){
             
             return state.token && state.user
@@ -15,7 +15,7 @@ export default {
 
         user(){
             return state.user
-        }
+        }*/
     },
 
     mutations:{
@@ -28,24 +28,21 @@ export default {
     },
 
     actions:{
-        async login({dispatch},user_info){
-            let res = await axios.post('users', user_info)
-
-            dispatch('attempt',res.data.token)
+        async signIn( {dispatch} ,user_info){
+            let res = await axios.post('http://localhost:4000/api/users/sign_in', user_info)
+            dispatch('attempt', res.data.jwt)
         },
-            //get the token 
-        async attempt({commit,state },token){
+        //get the token
+        async attempt({commit, state },token){
             if(token) {
                 commit('SET_TOKEN',token)
             }
-
             if(!state.token){
                 return
             }
-
-            //check that the user's tikon works
+            //check that the user's token works
             try {
-                let res = await axios.get('api_token_address')
+                let res = await axios.get('http://localhost:4000/api/users/')
                 //where the response should be
                 //set all of the data received from the api
                 commit('SET_USER',res.data)

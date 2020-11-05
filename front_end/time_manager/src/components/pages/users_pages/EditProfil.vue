@@ -6,30 +6,30 @@
         lazy-validation
     >
       <v-text-field
-          v-model="name"
+          v-model="username"
           :counter="16"
           :rules="nameRules"
-          label="Name"
+          label="Username"
           required
       ></v-text-field>
-
       <v-text-field
           v-model="password"
-          label="Votre MDP"
+          :rules="passwordRules"
+          label="Nouveau password"
           required
       ></v-text-field>
-      <div class="buttons">
+      <div id="buttons">
         <v-btn
             :disabled="!valid"
-            class="mr-4 success"
+            class="buttons mr-4 success"
             @click="validate"
         >Valider</v-btn>
         <v-btn
-            class="mr-4 error"
+            class="buttons mr-4 error"
             @click="reset"
-        >Reset des champs</v-btn>
+        >Reset</v-btn>
         <v-btn
-            class="mr-4 cancel"
+            class="buttons mr-4 cancel"
             @click="cancel"
         >Cancel</v-btn>
       </div>
@@ -52,39 +52,40 @@ export default {
   },
   data: () => ({
     valid: true,
-    name: '',
-    password: '',
+    username: null,
+    password: null,
     nameRules: [
-      v => !!v || 'Name is required',
-      v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+      v => !!v || 'Username nécéssaire',
+      v => (v && v.length <= 16) || 'Le Username doit faire maximum 16 chars',
     ],
-
+    passwordRules: [
+      v => !!v || 'Password nécéssaire'
+    ],
   }),
   methods: {
-    updateuser () {
-      console.log("validation")
-      Axios.put(
-          "http://localhost:4000/edit/" + this.user.userid,
-          {
-            params:
-                {
-                  token: this.token
-                }
-          })
-          .then(() => {
-                // Mise à jour de l'user
-                //this.$forceUpdate();
-              }
-          )
-          .catch(error => {
-                console.log(error)
-                /*Erreur ici*/
-              }
-          );
-
-    },
     validate () {
       this.$refs.form.validate()
+      if (this.name.length>0 && this.name.length<=16 && this.password.length>0) {
+        Axios
+            .put("http://localhost:4000/edit/" + this.user.userid,
+                {
+                  header: {
+                    Authorization: Store.state.token
+                  },
+                  body: {
+                    user: {
+                      username: this.username,
+                      password: this.password
+                    }
+                  }
+                },
+            )
+            .then((response) => {
+              Store.state.user = response.data
+              this.$router.push("/profil")
+            })
+            .catch((error) => console.error(error))
+      }
     },
     reset () {
       this.$refs.form.reset()
@@ -99,7 +100,7 @@ export default {
 <style scoped>
 
 .buttons {
-  padding-left: 5px;
+  margin: 0 5px 5px;
 }
 
 .success {
@@ -115,7 +116,7 @@ export default {
 .cancel {
   background-color: #fb8c00 !important;
   border-color: #fb8c00 !important;
-  color: white;
+  color: white !important;
 }
 
 #UserEdit {

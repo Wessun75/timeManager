@@ -23,10 +23,10 @@ il faut taper le password actuel pour valider le changement
       </label>
       <br>
       <br>
-      <div id="UserTeam" v-if="team!=null">
+      <div id="UserTeam" v-if="user.team!=null">
         <label class="form__label">Vous appartenez à l'équipe</label>
         <label>
-          <input disabled class="form__input" v-bind:value="team.team_name"/>
+          <input disabled class="form__input" v-bind:value="user.team.team_name"/>
         </label>
       </div>
       <br>
@@ -44,10 +44,7 @@ il faut taper le password actuel pour valider le changement
 </template>
 
 <script>
-//import Axios from "axios"
 import Store from "@/store"
-
-let localteamofuser = null;
 
 export default {
   name: "Profil",
@@ -79,26 +76,11 @@ export default {
       get() {
         return Store.state.token;
       }
-    },
-    team: {
-      get() {
-        return localteamofuser
-      }
     }
   },
   created() {
     // Si user null, retour à l'accueil cette page n'est dispo que si User log !
     document.title = "Profil de " + Store.state.user.username;
-    if (Store.state.user.team_id!=null) {
-      /*
-      Axios
-          .get("http://localhost:4000/getUserTeam/" + Store.state.user.userid)
-          .then((response) => {
-            localteamofuser = response.data
-          })
-       */
-      localteamofuser = {team_name: "Test"}
-    }
   }
 }
 </script>

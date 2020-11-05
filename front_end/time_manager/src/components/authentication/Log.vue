@@ -32,7 +32,7 @@
                     <h3 class="text-center mt-3">Forgot your password ?</h3>
                   </v-card-text>
                   <div class="text-center mt-3">
-                    <v-btn rounded color ="cyan darken-3" dark>Login</v-btn>
+                    <v-btn rounded color ="cyan darken-3" dark @click.prevent="submit()">Login</v-btn>
                   </div>
                 </v-col>
                 <v-col cols="12" md="4" class="cyan darken-2">
@@ -41,7 +41,7 @@
                     <h5 class="text-center">Register here if you do not have an account already</h5>
                   </v-card-text>
                   <div class="text-center">
-                    <v-btn rounded outlined="" dark @click="step++">Register</v-btn>
+                    <v-btn rounded outlined="" dark @click="reg()">Register</v-btn>
                   </div>
                 </v-col>
               </v-row>
@@ -54,7 +54,7 @@
                     <h5 class="text-center">Login here if you already have an account</h5>
                   </v-card-text>
                   <div class="text-center">
-                    <v-btn rounded outlined="" dark @click="step--" >Login</v-btn>
+                    <v-btn rounded outlined="" dark @click="log()" >Login</v-btn>
                   </div>
                 </v-col>
                 <v-col cols ="12" md="8">
@@ -71,14 +71,6 @@
                           v-model="register.username"
                       />
                       <v-text-field
-                          label ="Email"
-                          name="Email"
-                          prepend-icon="email"
-                          type="text"
-                          color="cyan darken-2"
-                          v-model="register.email"
-                      />
-                      <v-text-field
                           label ="Password"
                           id="Password"
                           name="Password"
@@ -92,7 +84,6 @@
                           name="CPassword"
                           prepend-icon="lock"
                           color="cyan darken-2"
-                          
                       />
                     </v-form>
                   </v-card-text>
@@ -114,31 +105,39 @@ import { mapActions } from 'vuex'
 
 export default {
   name: "Log",
-  
   data () {
     return {
-        step:1,
-        login : {
-            username: null,
-            password: null
-        },
-        register : {
-          username: null,
-          email: null,
-          password: null
-        }
-  }
-
+      step:1,
+      login : {
+        username: null,
+        password: null
+      },
+      register : {
+        username: null,
+        email: null,
+        password: null
+      }
+    }
   },
   props: {
     source: String
   },
   methods: {
     ...mapActions({
-      login: 'auth/login'
+      signIn: 'auth/signIn'
     }),
     submit(){
-      this.login(this.source)
+      this.signIn(this.login)
+    },
+    reg(){
+      this.login.username=null
+      this.login.password=null
+      this.step++
+    },
+    log(){
+      this.step--;
+      this.register.username=null;
+      this.register.password=null;
     }
   },
   beforeMount() {

@@ -16,8 +16,7 @@ export default {
       getUser: store.state.user,
       getToken: store.state.token,
     }
-  }*/
-  /*
+  }
   beforeMount() {
     //Init d'un user fake
     Store.state.user = {
@@ -28,7 +27,8 @@ export default {
       manage_id: [1,2]
     };
     Store.state.token = "YOLOTOKEN";
-  }*/
+  }
+  */
 }
 </script>
 

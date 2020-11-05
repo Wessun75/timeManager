@@ -114,7 +114,6 @@ export default {
       },
       register : {
         username: null,
-        email: null,
         password: null
       }
     }

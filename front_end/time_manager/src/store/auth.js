@@ -3,8 +3,8 @@ import axios from 'axios'
 export default {
     namespaced: true,
     state: {
-        token:'',
-        user:{}
+        token: null,
+        user: null
     },
 
     getters:{/*
@@ -30,19 +30,16 @@ export default {
     actions:{
         async signIn( {dispatch} ,user_info){
             let res = await axios.post('http://localhost:4000/api/users/sign_in', user_info)
-
-            dispatch('attempt',res.data.token)
+            dispatch('attempt', res.data.jwt)
         },
-            //get the token 
+        //get the token
         async attempt({commit, state },token){
             if(token) {
                 commit('SET_TOKEN',token)
             }
-
             if(!state.token){
                 return
             }
-
             //check that the user's token works
             try {
                 let res = await axios.get('http://localhost:4000/api/users/')

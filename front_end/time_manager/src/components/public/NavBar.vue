@@ -37,6 +37,7 @@ export default {
     }
   },
   created() {
+    if (Store.state.token==null) return;
     bar = [
       {
         id: 0,

@@ -11,12 +11,18 @@ defmodule TodolistWeb.TeamController do
     render(conn, "index.json", teams: teams)
   end
 
-  def create(conn, %{"team" => team_params}) do
-    with {:ok, %Team{} = team} <- Group.create_team(team_params) do
-      conn
-      |> put_status(:created)
-      |> put_resp_header("location", Routes.team_path(conn, :show, team))
-      |> render("show.json", team: team)
+  def create(conn, params) do
+    bearer_token = List.first(get_req_header(conn, "authorization"))
+    case Todolist.Token.verify_and_validate(bearer_token) do
+      nil ->
+        {:error, "Login error."}
+      work ->
+        with {:ok, %Team{} = team} <- Group.create_team(params) do
+          conn
+          |> put_status(:created)
+          |> put_resp_header("location", Routes.team_path(conn, :show, team))
+          |> render("show.json", team: team)
+        end
     end
   end
 

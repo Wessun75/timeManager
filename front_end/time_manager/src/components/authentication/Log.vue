@@ -84,7 +84,6 @@
                           name="CPassword"
                           prepend-icon="lock"
                           color="cyan darken-2"
-                          
                       />
                     </v-form>
                   </v-card-text>
@@ -106,21 +105,19 @@ import { mapActions } from 'vuex'
 
 export default {
   name: "Log",
-  
   data () {
     return {
-        step:1,
-        login : {
-            username: null,
-            password: null
-        },
-        register : {
-          username: null,
-          email: null,
-          password: null
-        }
-  }
-
+      step:1,
+      login : {
+        username: null,
+        password: null
+      },
+      register : {
+        username: null,
+        email: null,
+        password: null
+      }
+    }
   },
   props: {
     source: String
@@ -137,7 +134,6 @@ export default {
       this.signUp(this.register)
     },
     reg(){
-      
       this.login.username=null
       this.login.password=null
       this.step++

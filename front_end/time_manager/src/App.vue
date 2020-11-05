@@ -7,21 +7,12 @@
 <script>
 import Store from "@/store"
 
-let localteamofuser = null;
-
 export default {
   name: "App",
   data() {
     return {
       getUser: Store.state.user,
-      getTeam: localteamofuser,
       getToken: Store.state.token,
-    }
-  },
-  methods: {
-    setTeam(team) {
-      console.log("Ajout d'équipe: " + team.teamname);
-      localteamofuser = team;
     }
   },
   beforeMount() {
@@ -29,10 +20,9 @@ export default {
     Store.state.user = {
       userid: 1,
       username: "Arthur",
-      email: "arthur@epitech.eu",
-      role: 2,
-      team_id: null,
-      manage_id: [1,2,3]
+      role: 3,
+      team_id: 1,
+      manage_id: [1,2]
     };
     Store.state.token = "YOLOTOKEN";
   }

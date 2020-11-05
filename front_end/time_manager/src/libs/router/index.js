@@ -5,6 +5,7 @@ import Team from "@/components/pages/manager_pages/Team";
 import Log from "@/components/authentication/Log";
 import Home from "@/components/public/Home";
 import Presence from "@/components/pages/users_pages/Presence";
+import EditProfil from "@/components/pages/users_pages/EditProfil";
 
 Vue.use(Router);
 
@@ -33,6 +34,11 @@ export default new Router({
                         name: "Presence",
                         path: "presence",
                         component: Presence,
+                    },
+                    {
+                        name: "",
+                        path: "editprofil",
+                        component: EditProfil,
                     }
                 ]
             },

@@ -16,12 +16,14 @@ var _default = {
     user: {}
   },
   getters: {
-    authenticated: function authenticated(state) {
-      return state.token && state.user;
+    /*
+    authenticated(state){
+    
+    return state.token && state.user
     },
-    user: function user() {
-      return state.user;
-    }
+    user(){
+    return state.user
+    }*/
   },
   mutations: {
     SET_TOKEN: function SET_TOKEN(state, token) {
@@ -40,7 +42,7 @@ var _default = {
             case 0:
               dispatch = _ref.dispatch;
               _context.next = 3;
-              return regeneratorRuntime.awrap(_axios["default"].post('localhost:4000/api/users/sign_in', user_info));
+              return regeneratorRuntime.awrap(_axios["default"].post('http://localhost:4000/api/users/sign_in', user_info));
 
             case 3:
               res = _context.sent;

@@ -9,6 +9,8 @@ var _vue = _interopRequireDefault(require("vue"));
 
 var _vuex = _interopRequireDefault(require("vuex"));
 
+var _auth = _interopRequireDefault(require("./auth"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 _vue["default"].use(_vuex["default"]);
@@ -18,7 +20,9 @@ var _default = new _vuex["default"].Store({
   getters: {},
   mutations: {},
   actions: {},
-  modules: {}
+  modules: {
+    auth: _auth["default"]
+  }
 });
 
 exports["default"] = _default;

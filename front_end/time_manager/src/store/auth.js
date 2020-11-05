@@ -7,7 +7,7 @@ export default {
         user:{}
     },
 
-    getters:{
+    getters:{/*
         authenticated(state){
             
             return state.token && state.user
@@ -15,7 +15,7 @@ export default {
 
         user(){
             return state.user
-        }
+        }*/
     },
 
     mutations:{
@@ -29,7 +29,7 @@ export default {
 
     actions:{
         async signIn( {dispatch} ,user_info){
-            let res = await axios.post('localhost:4000/api/users/sign_in', user_info)
+            let res = await axios.post('http://localhost:4000/api/users/sign_in', user_info)
 
             dispatch('attempt',res.data.token)
         },

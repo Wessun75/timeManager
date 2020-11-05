@@ -3,7 +3,7 @@ use Mix.Config
 # Configure your database
 config :apiTime, Todolist.Repo,
   username: "postgres",
-  password: "posgres",
+  password: "postgres",
   database: "time_manager",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,

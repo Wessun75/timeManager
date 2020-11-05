@@ -31,6 +31,12 @@ defmodule TodolistWeb.TeamController do
     render(conn, "show.json", team: team)
   end
 
+  def get_manager_teams(conn, %{"user_id" => id}) do
+    user = Todolist.Accounts.get_user!(id)
+    teams = Group.get_teams_by_ids!(user.manage_id)
+    render(conn, "index.json", teams: teams)
+  end
+
   def update(conn, %{"id" => id, "team" => team_params}) do
     team = Group.get_team!(id)
 

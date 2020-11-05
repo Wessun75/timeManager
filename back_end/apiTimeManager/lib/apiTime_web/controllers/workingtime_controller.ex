@@ -6,6 +6,11 @@ defmodule TodolistWeb.WorkingtimeController do
 
   action_fallback TodolistWeb.FallbackController
 
+  def index(conn, _params) do
+    workingtimes = Worktime.list_workingtimes()
+    render(conn, "index.json", workingtimes: workingtimes)
+  end
+
   def index(conn, %{"user_id" => user_id, "start" => start, "end" => ends}) do
     workingtimes = Worktime.list_workingtimes_start_end(user_id, start, ends)
     render(conn, "index.json", workingtimes: workingtimes)

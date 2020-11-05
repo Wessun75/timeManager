@@ -6,6 +6,11 @@ defmodule TodolistWeb.UserController do
 
   action_fallback TodolistWeb.FallbackController
 
+  def index(conn, _params) do
+    user = Accounts.list_users()
+    render(conn, "show.json", user: user)
+  end
+
   def index(conn, %{"password" => password}) do
     with {:ok, %User{} = user} <- Accounts.connect(password) do
       conn

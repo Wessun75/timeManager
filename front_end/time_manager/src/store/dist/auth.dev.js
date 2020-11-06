@@ -16,14 +16,12 @@ var _default = {
     user: {}
   },
   getters: {
-    /*
-    authenticated(state){
-    
-    return state.token && state.user
+    authenticated: function authenticated(state) {
+      return state.token && state.user;
     },
-    user(){
-    return state.user
-    }*/
+    user: function user(state) {
+      return state.user;
+    }
   },
   mutations: {
     SET_TOKEN: function SET_TOKEN(state, token) {
@@ -47,10 +45,9 @@ var _default = {
             case 3:
               res = _context.sent;
               commit('SET_TOKEN', res.data);
-              console.log(res.data.token);
-              commit('SET_USER', user_info);
+              commit('SET_USER', user_info); //this.$router.push('/');
 
-            case 7:
+            case 6:
             case "end":
               return _context.stop();
           }

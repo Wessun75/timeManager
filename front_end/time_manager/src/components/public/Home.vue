@@ -14,6 +14,7 @@ import Footer from "@/components/public/Footer";
 import NavBar from "@/components/public/NavBar";
 import Store from "@/store";
 
+
 export default {
   name: "Home",
   components: {
@@ -23,10 +24,11 @@ export default {
   beforeMount() {
     if (Store.state.token == null) {
       console.error("Action impossible, utilisateur non connecté.")
-      this.$router.push("/login");
+      this.$router.push("/");
       return;// -> Retour direct à Home
     }
   },
+
   created() {
     document.title = "Accueil";
   }

@@ -5,11 +5,12 @@
       <i class="fa fa-bars"></i>
     </a>
   </div>
+
 </template>
 
 <script>
 import Store from '@/store'
-
+import {mapGetters} from "vuex";
 let bar = null;
 //  From : https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
 function compare( a, b ) {
@@ -76,7 +77,11 @@ export default {
       });
       bar.sort(compare)
     }
-  }
+  },
+    ...mapGetters({
+      authenticated: 'auth/authentication',
+      user: 'auth/user',
+    })
 }
 </script>
 

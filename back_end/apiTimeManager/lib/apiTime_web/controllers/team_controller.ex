@@ -14,10 +14,16 @@ defmodule TodolistWeb.TeamController do
   def create(conn, params) do
     bearer_token = List.first(get_req_header(conn, "authorization"))
     case Todolist.Token.verify_and_validate(bearer_token) do
-      {:error, err} ->
+      {:error, _err} ->
         {:error, :unauthorized}
-      {:ok, work} ->
+      {:ok, decode_token} ->
         with {:ok, %Team{} = team} <- Group.create_team(params) do
+          user = Todolist.Accounts.get_user!(decode_token["user_id"])
+          case user.manage_id do
+            nil -> Todolist.Accounts.update_user(user, %{manage_id: [team.id]})
+            _ -> Todolist.Accounts.update_user(user, %{manage_id: user.manage_id ++ [team.id]})
+          end
+
           conn
           |> put_status(:created)
           |> put_resp_header("location", Routes.team_path(conn, :show, team))

@@ -6,6 +6,7 @@ import Log from "@/components/authentication/Log";
 import Home from "@/components/public/Home";
 import Presence from "@/components/pages/users_pages/Presence";
 import EditProfil from "@/components/pages/users_pages/EditProfil";
+import EditProfilOther from "@/components/pages/admin/EditProfilOther";
 
 Vue.use(Router);
 
@@ -36,10 +37,20 @@ export default new Router({
                         component: Presence,
                     },
                     {
-                        name: "",
+                        name: "Board",
+                        path: "board",
+                        component: Presence,
+                    },
+                    {
+                        name: "UserEditProfil",
                         path: "editprofil",
                         component: EditProfil,
-                    }
+                    },
+                    {
+                        name: "AdminEditProfil",
+                        path: "admin-editprofil",
+                        component: EditProfilOther,
+                    },
                 ]
             },
             {

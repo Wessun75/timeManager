@@ -57,14 +57,22 @@ export default {
       {
         id: 3,
         name: "Vos récapitulatifs",
-        url: ""
+        url: "board"
       }
     ]
-    if (Store.state.user.manage_id) {
+    if (Store.state.user.role>=2) {
       bar.push({
         id: 5,
         name: "Équipe",
         url: "equipe"
+      });
+      bar.sort(compare)
+    }
+    if (Store.state.user.role===3) {
+      bar.push({
+        id: 8,
+        name: "User management",
+        url: "admin-editprofil"
       });
       bar.sort(compare)
     }

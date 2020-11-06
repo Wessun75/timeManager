@@ -32,8 +32,8 @@ export default {
             let res = await axios.post('http://localhost:4000/api/users/sign_in', user_info)
 
             commit('SET_TOKEN',res.data)
-            console.log(res.data.token)
             commit('SET_USER',user_info)
+            //this.$router.push('/');
         },
         async signUp( {commit} ,user_info){
             let res = await axios.post('http://localhost:4000/api/users/sign_up', user_info)

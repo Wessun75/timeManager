@@ -45,10 +45,9 @@ var _default = {
             case 3:
               res = _context.sent;
               commit('SET_TOKEN', res.data);
-              console.log(res.data.token);
-              commit('SET_USER', user_info);
+              commit('SET_USER', user_info); //this.$router.push('/');
 
-            case 7:
+            case 6:
             case "end":
               return _context.stop();
           }

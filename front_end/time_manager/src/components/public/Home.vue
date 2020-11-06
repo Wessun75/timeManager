@@ -14,6 +14,7 @@ import Footer from "@/components/public/Footer";
 import NavBar from "@/components/public/NavBar";
 import Store from "@/store";
 
+
 export default {
   name: "Home",
   components: {
@@ -26,13 +27,8 @@ export default {
       this.$router.push("/");
       return;// -> Retour direct à Home
     }
-  },/*
-  computed: {
-    ...mapGetters({
-      authenticated: 'auth/authentication',
-      user: 'auth/user',
-    })
-    },*/
+  },
+
   created() {
     document.title = "Accueil";
   }

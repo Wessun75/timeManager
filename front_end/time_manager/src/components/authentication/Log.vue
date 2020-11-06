@@ -128,9 +128,11 @@ export default {
     }),
     submit(){
       this.signIn(this.login)
+      this.$router.push('/');
     },
     submitReg(){
       this.signUp(this.register)
+      this.$router.push('/');
     },
     reg(){
       this.login.username=null

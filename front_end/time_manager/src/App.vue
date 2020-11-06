@@ -9,27 +9,22 @@ import Store from "@/store"
 
 export default {
   name: "App",
-  Store,
-  /*
   data() {
     return {
-      getUser: store.state.user,
-      getToken: store.state.token,
+      getUser: Store.state.user,
+      getToken: Store.state.token,
     }
-  }*/
+  },
   beforeMount() {
     //Init d'un user fake
     Store.state.user = {
-      user_id: 1,
+      userid: 1,
       username: "Arthur",
       role: 3,
-      team: {
-        team_id: 1,
-        team_name: "Team-1"
-      },
-      managed: null,
+      team_id: 1,
+      manage_id: [1,2]
     };
-    Store.state.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJKb2tlbiIsImV4cCI6MTYwNDYxOTgzOSwiaWF0IjoxNjA0NjEyNjM5LCJpc3MiOiJKb2tlbiIsImp0aSI6IjJwMmJsY2RqZHF2dWVlYWlyMDAwMDBhMiIsIm5iZiI6MTYwNDYxMjYzOX0.G4s_IbavsC95-WlILv3zvWqRL67yBsC8cdFjAxhzTTY";
+    Store.state.token = "YOLOTOKEN";
   }
 }
 </script>

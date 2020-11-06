@@ -16,6 +16,7 @@
         return-object
         hide-details
         label="Sélectioner un utilisateur"
+        @change="fields = selected"
     ></v-autocomplete>
     <div id="UserEdit" v-if="selected!=null && !(selected==='no user found')">
       <br/>
@@ -26,29 +27,22 @@
           lazy-validation
       >
         <v-text-field
-            v-model="username"
+            v-model="fields.username"
             :counter="16"
             :rules="nameRules"
             label="Username"
         ></v-text-field>
         <v-text-field
-            v-model="password"
-            :rules="passwordRules"
-            label="Changer password"
-        ></v-text-field>
-        <v-text-field
-            v-model="password"
-            :rules="passwordRules"
+            v-model="fields.team_id"
             label="Id de l'équipe"
         ></v-text-field>
         <v-text-field
-            v-model="role"
+            v-model="fields.role"
             :rules="roleRules"
             label="Niveau de permission"
         ></v-text-field>
         <v-text-field
-            v-model="password"
-            :rules="passwordRules"
+            v-model="fields.manage_id"
             label="Équipes gérées"
         ></v-text-field>
         <br/>
@@ -91,42 +85,41 @@ export default {
   name: "EditProfilOther",
   data: () => ({
     userlist: ["no user found"],
-    selected: null,
+    fields: {
+      username: null,
+      role: null,
+      manage_id: null,
+      team_id: null
+    },
     valid: true,
-    username: null,
-    password: null,
-    role: null,
+    selected: null,
     nameRules: [
       v => !!v || 'Username nécéssaire',
       v => (v && v.length <= 16) || 'Le Username doit faire maximum 16 chars',
     ],
-    passwordRules: [
-      v => !!v || 'Password nécéssaire'
-    ],
     roleRules: [
       v => (v && v>0 && v<4) || '1 = User, 2 = Manager, 3 = Général Manager'
-    ]
+    ],
   }),
   methods: {
     validate () {
       this.$refs.form.validate()
-      if (this.username.length>0 && this.username.length<=16 && this.password.length>0) {
+      if (this.fields.username.length>0 && this.fields.username.length<=16 && this.fields.role>0 && this.fields.role<4) {
+        if (this.fields.manage_id!=null) {
+          this.fields.manage_id = (this.fields.manage_id.toString()).split(',')
+        }
         Axios
-            .put("http://localhost:4000/api/users/" + this.user.user_id,
+            .put("http://localhost:4000/api/users/" + this.selected.id,
                 {
-                  params: {
-                    username: this.username,
-                    password: this.password
-                  }
+                  params: this.fields
                 },{
                   headers: {
                     'Authorization': Store.state.token
                   }
                 },
             )
-            .then((response) => {
-              Store.state.user.username = response.data.data.username
-              this.$router.push("/profil")
+            .then(() => {
+              console.log("Utilisateur modifié")
             })
             .catch((error) => console.error(error))
       }

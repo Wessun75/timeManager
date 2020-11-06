@@ -6,11 +6,13 @@ Page manager, pour afficher:
 
 <template>
   <div id="Team">
-    Team
     <div v-if="teams!=null">
+      <h3>Vous êtes le manager de {{teams.length}} équipe<a v-if="teams.length>1">s</a>:</h3>
+      <br/>
       <ul>
-        <li v-for="team in teams" :key="team.teamid">
-          {{team.manage_id}}
+        <li v-for="team in teams" :key="team.id">
+        <br/>
+          <h4>{{team.team_name}}</h4>
         </li>
       </ul>
     </div>
@@ -67,25 +69,28 @@ export default {
   },
   methods: {
     submit() {
-      console.log("Submit équipe: " + this.newteamname)
+      console.log("Création équipe: " + this.newteamname)
       this.$v.$touch()
       if (this.$v.$invalid) {
         this.submitStatus = 'ERROR'
       } else {
         this.submitStatus = 'PENDING'
         Axios
-            .post("http://localhost:4000/createTeam",
+            .post("http://localhost:4000/api/teams",
                 {
-                  params:
+                  team_name: this.newteamname
+                },
+                {
+                  headers:
                       {
-                        token: Store.state.token,
-                        team_name: this.newteamname
-                      }
+                        'Authorization': Store.state.token,
+                      },
                 }
             )
             .then((response) => {
-                  Store.state.user.manage_id.push(response.data.teamid)
+                  Store.state.user.managed.push(response.data.data.id)
                   this.submitStatus = 'OK'
+                  console.log("Équipe ajoutée: " + response.data.data.team_name)
                 }
             )
             .catch((error) => {
@@ -105,20 +110,19 @@ export default {
       return;// -> Retour direct à Home
     }
     document.title = "Équipes de " + Store.state.user.username;
-    /*
-    Axios.get(`http://localhost:4000/viewManaged/${Store.state.user.userid}`,
-        { params:
+    Axios.get(`http://localhost:4000/api/teams/managed/${Store.state.user.user_id}`,
+        {
+          headers:
               {
-                token: Store.state.token
-              }
+                'Authorization': Store.state.token,
+              },
         })
         .then((response) => {
-          this.teams = response.data
+          this.teams = response.data.data
         })
         .catch(error => {
           console.error(error);
         })
-     */
   }
 }
 </script>

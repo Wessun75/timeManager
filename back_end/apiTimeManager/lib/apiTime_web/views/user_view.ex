@@ -14,6 +14,9 @@ defmodule TodolistWeb.UserView do
     %{
       id: user.id,
       username: user.username,
+      role: user.role,
+      team_id: user.team_id,
+      manage_id: user.manage_id,
     }
   end
 

@@ -14,10 +14,16 @@ defmodule TodolistWeb.TeamController do
   def create(conn, params) do
     bearer_token = List.first(get_req_header(conn, "authorization"))
     case Todolist.Token.verify_and_validate(bearer_token) do
-      nil ->
-        {:error, "Login error."}
-      work ->
+      {:error, _err} ->
+        {:error, :unauthorized}
+      {:ok, decode_token} ->
         with {:ok, %Team{} = team} <- Group.create_team(params) do
+          user = Todolist.Accounts.get_user!(decode_token["user_id"])
+          case user.manage_id do
+            nil -> Todolist.Accounts.update_user(user, %{manage_id: [team.id], role: 2})
+            _ -> Todolist.Accounts.update_user(user, %{manage_id: user.manage_id ++ [team.id]})
+          end
+
           conn
           |> put_status(:created)
           |> put_resp_header("location", Routes.team_path(conn, :show, team))
@@ -37,7 +43,21 @@ defmodule TodolistWeb.TeamController do
     render(conn, "index.json", teams: teams)
   end
 
-  def update(conn, %{"id" => id, "team" => team_params}) do
+  def join_team(conn, %{"user_id" => id, "team_id" => team_id}) do
+    bearer_token = List.first(get_req_header(conn, "authorization"))
+    user = Todolist.Accounts.get_user!(id)
+    case Todolist.Token.verify_and_validate(bearer_token) do
+      {:error, _err} ->
+        {:error, :unauthorized}
+      {:ok, _decode_token} ->
+        Todolist.Accounts.update_user(user, %{team_id: team_id})
+        conn
+        |> resp(200, "user join team !")
+        |> send_resp()
+    end
+  end
+
+  def update(conn, %{"id" => id, "team_id" => team_params}) do
     team = Group.get_team!(id)
 
     with {:ok, %Team{} = team} <- Group.update_team(team, team_params) do

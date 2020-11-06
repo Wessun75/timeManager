@@ -46,8 +46,9 @@ defmodule Todolist.Accounts do
 
   def sign_in(username, password)do
     case username_password_auth(username, password) do
-      {:ok, token_with_default_claims} ->
-        Todolist.Token.generate_and_sign()
+      {:ok, user} ->
+        extra_claims = %{"user_id" => user.id}
+        Todolist.Token.generate_and_sign(extra_claims)
       _ ->
         {:error, :unauthorized}
     end
@@ -104,7 +105,7 @@ defmodule Todolist.Accounts do
   def update_user(%User{} = user, attrs) do
     user
     |> User.update_changeset(attrs)
-    |> Repo.update()
+    |> Repo.insert_or_update()
   end
 
   @doc """

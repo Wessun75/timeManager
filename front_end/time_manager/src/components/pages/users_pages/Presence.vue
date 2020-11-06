@@ -35,16 +35,13 @@ export default {
     }
   },
   mounted() {
-    if (Store.state.token==null || Store.state.user.role < 2) {
-      console.error("Action impossible, permissions insufisante.");
-      document.title = "Accueil";
-      this.$router.push("/");
-      return;// -> Retour direct à Home
-    }
     document.title = "Signer sa présence";
     Axios
-        .get("http://localhost:4000/users/getDay/" + Store.state.user.userid)
-        .then((response) => this.presence = response.data)
+        .get("http://localhost:4000/workingtimes/" + Store.state.user.userid)
+        .then((response) => {
+
+          this.presence = response.data
+        })
         .catch((error) => console.error(error))
   }
 }

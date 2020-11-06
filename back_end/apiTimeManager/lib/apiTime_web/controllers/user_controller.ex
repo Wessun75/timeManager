@@ -23,8 +23,12 @@ defmodule TodolistWeb.UserController do
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.user_path(conn, :show, user))
-      |> resp(200, "Account created")
-      |> send_resp()
+      case Accounts.sign_in(user.username, user.password) do
+        {:ok, token, _claims} ->
+          render(conn, "login.json", %{user: user, jwt: token})
+        _ ->
+          {:error, :unauthorized}
+      end
     end
   end
 
@@ -34,10 +38,14 @@ defmodule TodolistWeb.UserController do
   end
 
   def sign_in(conn, %{"username" => username, "password" => password}) do
-    case Accounts.sign_in(username, password) do
-      {:ok, token, _claims} ->
-        conn
-        |> render("jwt.json", jwt: token)
+    case Accounts.username_password_auth(username, password) do
+      {:ok, user} ->
+        case Accounts.sign_in(username, password) do
+          {:ok, token, _claims} ->
+            render(conn, "login.json", %{user: user, jwt: token})
+          _ ->
+            {:error, :unauthorized}
+        end
       _ ->
         {:error, :unauthorized}
     end

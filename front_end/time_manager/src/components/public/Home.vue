@@ -3,7 +3,8 @@
     <NavBar/>
     <router-view/>
     <div id="Accueil" v-if="this.$route.path==='/'">
-      Accueil
+      <br/>
+      <h2>Bonjour, bienvenue sur la page d'accueil {{user.username}}</h2>
     </div>
     <Footer/>
   </div>
@@ -14,16 +15,21 @@ import Footer from "@/components/public/Footer";
 import NavBar from "@/components/public/NavBar";
 import Store from "@/store";
 
-
 export default {
   name: "Home",
   components: {
     NavBar,
     Footer,
   },
+  computed: {
+      user:{
+        get() {
+          return Store.state.user
+        }
+      }
+  },
   beforeMount() {
     if (Store.state.token == null) {
-      console.error("Action impossible, utilisateur non connecté.")
       this.$router.push("/login");
       return;// -> Retour direct à Home
     }

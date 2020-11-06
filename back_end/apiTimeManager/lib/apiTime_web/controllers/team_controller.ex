@@ -20,7 +20,7 @@ defmodule TodolistWeb.TeamController do
         with {:ok, %Team{} = team} <- Group.create_team(params) do
           user = Todolist.Accounts.get_user!(decode_token["user_id"])
           case user.manage_id do
-            nil -> Todolist.Accounts.update_user(user, %{manage_id: [team.id]})
+            nil -> Todolist.Accounts.update_user(user, %{manage_id: [team.id], role: 2})
             _ -> Todolist.Accounts.update_user(user, %{manage_id: user.manage_id ++ [team.id]})
           end
 

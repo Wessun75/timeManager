@@ -24,7 +24,7 @@ export default {
   beforeMount() {
     if (Store.state.token == null) {
       console.error("Action impossible, utilisateur non connecté.")
-      this.$router.push("/");
+      this.$router.push("/login");
       return;// -> Retour direct à Home
     }
   },

@@ -28,14 +28,6 @@
                           color="cyan darken-2"
                           v-model="login.password"
                       />
-                          <v-text-field
-                          label ="role"
-                          id="role"
-                          name="role"
-                          prepend-icon="person"
-                          color="cyan darken-2"
-                          v-model="login.password"
-                      />
                     </v-form>
                     <h3 class="text-center mt-3">Forgot your password ?</h3>
                   </v-card-text>
@@ -111,7 +103,7 @@
 <script>
 import axios from 'axios'
 import Store from "@/store"
-import { mapActions } from 'vuex'
+//import { mapActions } from 'vuex'
 
 export default {
   name: "Log",
@@ -132,21 +124,25 @@ export default {
   props: {
     source: String
   },
-  methods: {
+  methods: {/*
     ...mapActions({
       signUp: 'auth/signUp'
-    }),
+    }),*/
     submit(){
-      let res= axios.post('http://localhost:4000/api/users/sign_in', this.login)
-      Store.state.token = res.data
-      Store.state.user = this.login
-      this.$router.push('/');
+      axios.post('http://localhost:4000/api/users/sign_in', this.login)
+          .then(response => {
+            Store.state.token = response.data.jwt
+            Store.state.user = response.data.user
+            this.$router.push('/');
+          })
     },
     submitReg(){
-      let res= axios.post('http://localhost:4000/api/users/sign_up', this.register)
-      Store.state.token = res.data
-      Store.state.user = this.register
-      
+      axios.post('http://localhost:4000/api/users/sign_up', this.register)
+          .then(response => {
+            Store.state.token = response.data.jwt
+            Store.state.user = response.data.user
+            this.$router.push('/');
+          })
     },
     reg(){
       this.login.username=null

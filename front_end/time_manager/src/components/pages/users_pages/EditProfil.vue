@@ -67,7 +67,7 @@ export default {
       this.$refs.form.validate()
       if (this.username.length>0 && this.username.length<=16 && this.password.length>0) {
         Axios
-            .put("http://localhost:4000/api/users/" + this.user.user_id,
+            .put("http://localhost:4000/api/users/" + this.user.id,
                 {
                     params: {
                       username: this.username,

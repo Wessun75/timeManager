@@ -5,27 +5,9 @@
 </template>
 
 <script>
-import Store from "@/store"
 
 export default {
-  name: "App",
-  data() {
-    return {
-      getUser: Store.state.user,
-      getToken: Store.state.token,
-    }
-  },
-  beforeMount() {
-    //Init d'un user fake
-    Store.state.user = {
-      userid: 1,
-      username: "Arthur",
-      role: 3,
-      team_id: 1,
-      manage_id: [1,2]
-    };
-    Store.state.token = "YOLOTOKEN";
-  }
+  name: "App"
 }
 </script>
 

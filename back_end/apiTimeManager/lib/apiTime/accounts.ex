@@ -39,7 +39,7 @@ defmodule Todolist.Accounts do
     end
   end
 
-  defp username_password_auth(username, password) when is_binary(username) and is_binary(password) do
+  def username_password_auth(username, password) when is_binary(username) and is_binary(password) do
     with {:ok, user} <- get_by_username(username),
          do: verify_password(password, user)
   end

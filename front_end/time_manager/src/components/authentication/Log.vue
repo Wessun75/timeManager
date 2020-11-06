@@ -28,6 +28,14 @@
                           color="cyan darken-2"
                           v-model="login.password"
                       />
+                          <v-text-field
+                          label ="role"
+                          id="role"
+                          name="role"
+                          prepend-icon="person"
+                          color="cyan darken-2"
+                          v-model="login.password"
+                      />
                     </v-form>
                     <h3 class="text-center mt-3">Forgot your password ?</h3>
                   </v-card-text>
@@ -101,6 +109,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+import Store from "@/store"
 import { mapActions } from 'vuex'
 
 export default {
@@ -114,7 +124,8 @@ export default {
       },
       register : {
         username: null,
-        password: null
+        password: null,
+        role:1
       }
     }
   },
@@ -123,16 +134,19 @@ export default {
   },
   methods: {
     ...mapActions({
-      signIn: 'auth/signIn',
       signUp: 'auth/signUp'
     }),
     submit(){
-      this.signIn(this.login)
+      let res= axios.post('http://localhost:4000/api/users/sign_in', this.login)
+      Store.state.token = res.data
+      Store.state.user = this.login
       this.$router.push('/');
     },
     submitReg(){
-      this.signUp(this.register)
-      this.$router.push('/');
+      let res= axios.post('http://localhost:4000/api/users/sign_up', this.register)
+      Store.state.token = res.data
+      Store.state.user = this.register
+      
     },
     reg(){
       this.login.username=null

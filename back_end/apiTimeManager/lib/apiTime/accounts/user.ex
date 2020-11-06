@@ -6,7 +6,7 @@ defmodule Todolist.Accounts.User do
     field :username, :string
     field :password, :string, virtual: true
     field :password_hash, :string
-    field :team_id, :integer
+    belongs_to :team, Todolist.Group.Team
     field :manage_id, {:array, :integer}
     field :role, :integer, default: 1
 

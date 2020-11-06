@@ -88,9 +88,13 @@ export default {
                 }
             )
             .then((response) => {
-                  Store.state.user.managed.push(response.data.data.id)
+                  if (Store.state.user.manage_id==null) {
+                    Store.state.user.manage_id = []
+                  }
+                  Store.state.user.manage_id.push(response.data.data.id)
                   this.submitStatus = 'OK'
                   console.log("Équipe ajoutée: " + response.data.data.team_name)
+                  this.teams.push(response.data.data)
                 }
             )
             .catch((error) => {
@@ -109,8 +113,8 @@ export default {
       this.$router.push("/");
       return;// -> Retour direct à Home
     }
-    document.title = "Équipes de " + Store.state.user.username;
-    Axios.get(`http://localhost:4000/api/teams/managed/${Store.state.user.user_id}`,
+    document.title = "Vos équipes";
+    Axios.get(`http://localhost:4000/api/teams/managed/${Store.state.user.id}`,
         {
           headers:
               {

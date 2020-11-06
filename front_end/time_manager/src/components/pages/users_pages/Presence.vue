@@ -37,9 +37,13 @@ export default {
   mounted() {
     document.title = "Signer sa présence";
     Axios
-        .get("http://localhost:4000/workingtimes/" + Store.state.user.userid)
+        .get("http://localhost:4000/workingtimes/" + Store.state.user.id,
+            {
+              headers: {
+                'Authorization': Store.state.token
+              }
+            })
         .then((response) => {
-
           this.presence = response.data
         })
         .catch((error) => console.error(error))

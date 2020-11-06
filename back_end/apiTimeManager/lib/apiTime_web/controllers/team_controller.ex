@@ -16,7 +16,7 @@ defmodule TodolistWeb.TeamController do
     case Todolist.Token.verify_and_validate(bearer_token) do
       nil ->
         {:error, "Login error."}
-      work ->
+      {:ok, work} ->
         with {:ok, %Team{} = team} <- Group.create_team(params) do
           conn
           |> put_status(:created)

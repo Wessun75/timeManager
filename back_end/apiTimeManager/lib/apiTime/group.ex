@@ -37,6 +37,14 @@ defmodule Todolist.Group do
   """
   def get_team!(id), do: Repo.get!(Team, id)
 
+  def get_teams_by_ids!(ids) do
+    query = Ecto.Query.from(
+      q in Team,
+      where: q.id in ^ids
+    )
+    Repo.all(query)
+  end
+
   @doc """
   Creates a team.
 

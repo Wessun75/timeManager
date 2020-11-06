@@ -65,23 +65,22 @@ export default {
   methods: {
     validate () {
       this.$refs.form.validate()
-      if (this.name.length>0 && this.name.length<=16 && this.password.length>0) {
+      if (this.username.length>0 && this.username.length<=16 && this.password.length>0) {
         Axios
-            .put("http://localhost:4000/edit/" + this.user.userid,
+            .put("http://localhost:4000/api/users/" + this.user.user_id,
                 {
-                  header: {
-                    Authorization: Store.state.token
-                  },
-                  body: {
-                    user: {
+                    params: {
                       username: this.username,
                       password: this.password
-                    }
+                  }
+                },{
+                  headers: {
+                    'Authorization': Store.state.token
                   }
                 },
             )
             .then((response) => {
-              Store.state.user = response.data
+              Store.state.user.username = response.data.data.username
               this.$router.push("/profil")
             })
             .catch((error) => console.error(error))

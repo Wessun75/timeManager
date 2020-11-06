@@ -17,6 +17,7 @@ defmodule TodolistWeb.Router do
     resources "/users/sign_up", UserController, only: [:create]
     post "/users/sign_in", UserController, :sign_in
     resources "/teams", TeamController, except: [:new]
+    get "teams/managed/:user_id", TeamController, :get_manager_teams
   end
 
   scope "/debug", TodolistWeb do

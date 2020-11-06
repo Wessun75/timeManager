@@ -88,7 +88,7 @@
                     </v-form>
                   </v-card-text>
                   <div class="text-center mt-3">
-                    <v-btn rounded color ="cyan darken-3" dark>Register</v-btn>
+                    <v-btn rounded color ="cyan darken-3" dark @click.prevent = "submitReg()">Register</v-btn>
                   </div>
                 </v-col>
               </v-row>
@@ -114,7 +114,6 @@ export default {
       },
       register : {
         username: null,
-        email: null,
         password: null
       }
     }
@@ -124,10 +123,14 @@ export default {
   },
   methods: {
     ...mapActions({
-      signIn: 'auth/signIn'
+      signIn: 'auth/signIn',
+      signUp: 'auth/signUp'
     }),
     submit(){
       this.signIn(this.login)
+    },
+    submitReg(){
+      this.signUp(this.register)
     },
     reg(){
       this.login.username=null

@@ -7,15 +7,15 @@ export default {
         user:{}
     },
 
-    getters:{/*
-        authenticated(state){
+    getters:{
+        authenticated (state){
             
             return state.token && state.user
         },
 
-        user(){
+        user (state){
             return state.user
-        }*/
+        }
     },
 
     mutations:{

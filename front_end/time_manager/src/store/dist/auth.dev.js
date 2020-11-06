@@ -16,14 +16,12 @@ var _default = {
     user: {}
   },
   getters: {
-    /*
-    authenticated(state){
-    
-    return state.token && state.user
+    authenticated: function authenticated(state) {
+      return state.token && state.user;
     },
-    user(){
-    return state.user
-    }*/
+    user: function user(state) {
+      return state.user;
+    }
   },
   mutations: {
     SET_TOKEN: function SET_TOKEN(state, token) {

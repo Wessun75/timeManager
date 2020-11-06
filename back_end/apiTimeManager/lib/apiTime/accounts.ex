@@ -46,8 +46,7 @@ defmodule Todolist.Accounts do
 
   def sign_in(username, password)do
     case username_password_auth(username, password) do
-      {:ok, token_with_default_claims} ->
-        Todolist.Token.generate_and_sign()
+      {:ok, _user} -> Todolist.Token.generate_and_sign()
       _ ->
         {:error, :unauthorized}
     end

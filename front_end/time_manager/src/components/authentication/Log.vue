@@ -9,7 +9,7 @@
               <v-row>
                 <v-col cols ="12" md="8">
                   <v-card-text class="mt-12">
-                    <h1 class="text-center display-2 cyan--text text--darken-2">Sign in to TimeShare</h1>
+                    <h1 class="text-center display-2 cyan--text text--darken-2">Connectez-vous au Time Manager</h1>
                     <h4 class="text-center mlt-4"></h4>
                     <v-form>
                       <v-text-field
@@ -29,7 +29,7 @@
                           v-model="login.password"
                       />
                     </v-form>
-                    <h3 class="text-center mt-3">Forgot your password ?</h3>
+                    <h3 class="text-center mt-3">Mot de passe oublié ?</h3>
                   </v-card-text>
                   <div class="text-center mt-3">
                     <v-btn rounded color ="cyan darken-3" dark @click.prevent="submit()">Login</v-btn>
@@ -37,8 +37,8 @@
                 </v-col>
                 <v-col cols="12" md="4" class="cyan darken-2">
                   <v-card-text class="white--text mt-12">
-                    <h1 class="text-center display-1">Hello New Users !</h1>
-                    <h5 class="text-center">Register here if you do not have an account already</h5>
+                    <h1 class="text-center display-1">Bonjour Nouveaux Utilisateurs !</h1>
+                    <h5 class="text-center">Inscrivez-vous ici si vous n'avez pas encore de compte</h5>
                   </v-card-text>
                   <div class="text-center">
                     <v-btn rounded outlined="" dark @click="reg()">Register</v-btn>
@@ -50,8 +50,8 @@
               <v-row class="fill-height">
                 <v-col cols="12" md="4" class="cyan darken-2">
                   <v-card-text class="white--text mt-12">
-                    <h1 class="text-center display-1">Welcome Back !</h1>
-                    <h5 class="text-center">Login here if you already have an account</h5>
+                    <h1 class="text-center display-1">Nous saluons votre retour !</h1>
+                    <h5 class="text-center">Connectez-vous ici si vous avez déjà un compte</h5>
                   </v-card-text>
                   <div class="text-center">
                     <v-btn rounded outlined="" dark @click="log()" >Login</v-btn>
@@ -59,7 +59,7 @@
                 </v-col>
                 <v-col cols ="12" md="8">
                   <v-card-text class="mt-12">
-                    <h1 class="text-center display-2 cyan--text text--darken-2">Create An Account</h1>
+                    <h1 class="text-center display-2 cyan--text text--darken-2">Créer un compte</h1>
                     <h4 class="text-center mlt-4"></h4>
                     <v-form>
                       <v-text-field

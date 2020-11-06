@@ -68,7 +68,7 @@ export default {
     const { data } = await axios.get("");
 
     data.forEach(d => {
-      const date = moment(d.date, "YYYYMMDD").format("MM/DD");
+      const date = moment(d.date, "YYYY-MM-DD").format("MM/DD");
       const {
         startTime,
         LeaveTime,

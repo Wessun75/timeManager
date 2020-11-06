@@ -37,6 +37,11 @@ defmodule TodolistWeb.UserController do
     render(conn, "show.json", user: user)
   end
 
+  def get_users_by_team(conn, %{"team_id" => id}) do
+    users = Accounts.get_by_team!(id)
+    render(conn, "index.json", users: users)
+  end
+
   def sign_in(conn, %{"username" => username, "password" => password}) do
     case Accounts.username_password_auth(username, password) do
       {:ok, user} ->

@@ -30,6 +30,11 @@ defmodule Todolist.Accounts do
     end
   end
 
+  def get_by_team!(id)do
+    query = Ecto.Query.from(q in User, where: q.team_id == ^id)
+    Repo.all(query)
+  end
+
   defp verify_password(password, %User{} = user) when is_binary(password) do
     if Bcrypt.verify_pass(password, user.password_hash) do
       {:ok, user}

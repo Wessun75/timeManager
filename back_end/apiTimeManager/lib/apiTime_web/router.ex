@@ -19,6 +19,7 @@ defmodule TodolistWeb.Router do
     post "/teams/join_team", TeamController, :join_team
     resources "/teams", TeamController, except: [:new]
     get "/teams/managed/:user_id", TeamController, :get_manager_teams
+    get "/teams/users/:team_id", UserController, :get_users_by_team
   end
 
   scope "/debug", TodolistWeb do

@@ -65,16 +65,16 @@ export default {
     };
   },
   async created() {
-    const { data } = await axios.get("");
+    const { data } = await axios.get("http://localhost:4000/api/workingtimes/");
 
     data.forEach(d => {
-      const date = moment(d.date, "YYYY-MM-DD").format("MM/DD");
+      const date = moment(d.date, "YYYY - MM - DD HH : mm : ss ").format("h:mm:ss");
       const {
         startTime,
         LeaveTime,
       } = d;
 
-      this.arrPositive.push({ date, total: startTime });
+      this.arrStart.push({ date, total: startTime });
       this.arrLeave.push({ date, total: leaveTime});
     });
   }

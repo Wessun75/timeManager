@@ -19,7 +19,6 @@ export default {
   },
   mounted() {
     const dates = this.chartData.map(d => d.date).reverse();
-    const totals = this.chartData.map(d => d.total).reverse();
 
     const {
       borderColor,
@@ -34,7 +33,7 @@ export default {
         datasets: [
           {
             label: this.label,
-            data: totals,
+            data: dates,
             borderColor: borderColor,
             pointBorderColor: pointBorderColor,
             pointBackgroundColor: pointBackgroundColor,
